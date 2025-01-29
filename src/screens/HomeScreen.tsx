@@ -1,5 +1,7 @@
-import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Button from '../components/Button';
+import colors from '../constants/colors';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -12,18 +14,14 @@ export default function HomeScreen() {
         resizeMode="contain"
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity 
-          style={styles.button}
+        <Button 
+          title="ミニマップを開く"
           onPress={() => navigation.navigate('Map')}
-        >
-          <Text style={styles.buttonText}>ミニマップを開く</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.button}
+        />
+        <Button 
+          title="ミニゲームを遊ぶ"
           onPress={() => navigation.navigate('Games')}
-        >
-          <Text style={styles.buttonText}>ミニゲームを遊ぶ</Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
@@ -32,7 +30,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 20,
@@ -45,17 +43,5 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 20,
     gap: 10,
-  },
-  button: {
-    backgroundColor: '#E10600',
-    padding: 15,
-    borderRadius: 8,
-    width: '100%',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });
