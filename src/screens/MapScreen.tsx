@@ -113,29 +113,31 @@ const MapScreen = () => {
         </View>
       </View>
 
-      <PinchZoomView maxScale={4} minScale={0.5} style={styles.zoomWrapper}>
-        <View style={styles.mapContainer}>
-          <Image
-            source={require('../../assets/map.png')}
-            style={styles.mapBackground}
-            resizeMode="contain"
-          />
-          
-          <CurrentLocationIndicator x={currentLocation.x} y={currentLocation.y} />
-          
-          {PLACES.map((place) => (
-            <React.Fragment key={place.id}>
-              <LocationPin x={place.x} y={place.y} />
-              <PlaceButton 
-                name={place.name} 
-                x={place.x} 
-                y={place.y} 
-                position={place.position}
-              />
-            </React.Fragment>
-          ))}
-        </View>
-      </PinchZoomView>
+      <View style={styles.mapWrapper}>
+        <PinchZoomView maxScale={4} minScale={0.5} style={styles.zoomWrapper}>
+          <View style={styles.mapContainer}>
+            <Image
+              source={require('../../assets/map.png')}
+              style={styles.mapBackground}
+              resizeMode="contain"
+            />
+            
+            <CurrentLocationIndicator x={currentLocation.x} y={currentLocation.y} />
+            
+            {PLACES.map((place) => (
+              <React.Fragment key={place.id}>
+                <LocationPin x={place.x} y={place.y} />
+                <PlaceButton 
+                  name={place.name} 
+                  x={place.x} 
+                  y={place.y} 
+                  position={place.position}
+                />
+              </React.Fragment>
+            ))}
+          </View>
+        </PinchZoomView>
+      </View>
 
       <View style={styles.calendarWrapper}>
         <TouchableOpacity style={styles.calendarButton}>
@@ -192,6 +194,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  mapWrapper: {
+    flex: 1,
+    overflow: 'hidden', // This prevents content from escaping the container
   },
   zoomWrapper: {
     flex: 1,
