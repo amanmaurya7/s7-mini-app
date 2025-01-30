@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import colors from "../constants/colors";
 
 interface ButtonProps {
@@ -20,14 +20,16 @@ export default function Button({
       onPress={onPress}
     >
       {Icon && <Icon />}
-      <Text
-        style={[
-          styles.buttonText,
-          variant === "outlined" && styles.buttonTextOutlined,
-        ]}
-      >
-        {title}
-      </Text>
+      <View style={{ flex: 1 }}>
+        <Text
+          style={[
+            styles.buttonText,
+            variant === "outlined" && styles.buttonTextOutlined,
+          ]}
+        >
+          {title}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -51,9 +53,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: "700",
     width: "100%",
+    textAlign: "center",
   },
   buttonTextOutlined: {
     color: colors.primary,
