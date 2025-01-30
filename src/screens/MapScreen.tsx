@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Svg, { Path, Circle, G } from 'react-native-svg';
+import PinchZoomView from 'react-native-pinch-zoom-view';
 
 const { width } = Dimensions.get('window');
 
@@ -112,44 +113,48 @@ const MapScreen = () => {
         </View>
       </View>
 
-      <View style={styles.mapContainer}>
+      <View style={styles.mapWrapper}>
+        <PinchZoomView maxScale={4} minScale={0.5} style={styles.zoomWrapper}>
+          <View style={styles.mapContainer}>
+            <Image
+              source={require('../../assets/map.png')}
+              style={styles.mapBackground}
+              resizeMode="contain"
+            />
+            
+            <CurrentLocationIndicator x={currentLocation.x} y={currentLocation.y} />
+            
+            {PLACES.map((place) => (
+              <React.Fragment key={place.id}>
+                <LocationPin x={place.x} y={place.y} />
+                <PlaceButton 
+                  name={place.name} 
+                  x={place.x} 
+                  y={place.y} 
+                  position={place.position}
+                />
+              </React.Fragment>
+            ))}
+          </View>
+        </PinchZoomView>
+      </View>
+
+      <View style={styles.calendarWrapper}>
+        <TouchableOpacity style={styles.calendarButton}>
+          <Image
+            source={require('../../assets/calendar-icon.png')}
+            style={styles.calendarIcon}
+          />
+          <Text style={styles.calendarButtonText}>カレンダーを見る</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.f1LogoContainer}>
         <Image
-          source={require('../../assets/map.png')}
-          style={styles.mapBackground}
+          source={require('../../assets/smallf1.png')}
+          style={styles.f1Logo}
           resizeMode="contain"
         />
-        
-        <CurrentLocationIndicator x={currentLocation.x} y={currentLocation.y} />
-        
-        {PLACES.map((place) => (
-          <React.Fragment key={place.id}>
-            <LocationPin x={place.x} y={place.y} />
-            <PlaceButton 
-              name={place.name} 
-              x={place.x} 
-              y={place.y} 
-              position={place.position}
-            />
-          </React.Fragment>
-        ))}
-
-        <View style={styles.calendarWrapper}>
-          <TouchableOpacity style={styles.calendarButton}>
-            <Image
-              source={require('../../assets/calendar-icon.png')}
-              style={styles.calendarIcon}
-            />
-            <Text style={styles.calendarButtonText}>カレンダーを見る</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.f1LogoContainer}>
-          <Image
-            source={require('../../assets/F1-logo.png')}
-            style={styles.f1Logo}
-            resizeMode="contain"
-          />
-        </View>
       </View>
     </View>
   );
@@ -190,10 +195,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  mapContainer: {
+  mapWrapper: {
     flex: 1,
+    overflow: 'hidden', // This prevents content from escaping the container
+  },
+  zoomWrapper: {
+    flex: 1,
+    width: '100%',
+  },
+  mapContainer: {
     position: 'relative',
     width: width,
+    height: '100%',
   },
   mapBackground: {
     width: '100%',
