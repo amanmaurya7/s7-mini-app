@@ -20,11 +20,10 @@
     "react-native": "0.76.6",
     "react-native-safe-area-context": "^5.1.0",
     "react-native-screens": "^4.5.0",
-<<<<<<< HEAD
-    "react-native-svg": "^15.11.1"
-=======
+
+    
     "react-native-svg": "15.8.0"
->>>>>>> 7a858a7939b50dd088554a3471d1120a18aa1531
+
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
