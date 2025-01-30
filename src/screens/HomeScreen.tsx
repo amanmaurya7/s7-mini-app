@@ -21,14 +21,12 @@ export default function HomeScreen() {
           <Button
             title="ミニマップを開く"
             onPress={() => navigation.navigate("Map")}
-            Icon={() => <Entypo name="location-pin" size={24} color="white" />}
+            Icon={() => <Image source={require("../../assets/Location.png")} />}
           />
           <Button
             title="ミニゲームを遊ぶ"
             onPress={() => navigation.navigate("Games")}
-            Icon={() => (
-              <Fontisto name="direction-sign" size={24} color="white" />
-            )}
+            Icon={() => <Image source={require("../../assets/DPaD.png")} />}
           />
           <View style={styles.smallF1Logo}>
             <Image source={require("../../assets/smallf1.png")} />
