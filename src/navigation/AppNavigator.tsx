@@ -11,14 +11,20 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign: 'center',
         }}
       >
         <Stack.Screen 
           name="Home" 
           component={HomeScreen}
           options={{
-            headerShown: false
+            title: 'F1日本グランプリ',
           }}
         />
         <Stack.Screen 

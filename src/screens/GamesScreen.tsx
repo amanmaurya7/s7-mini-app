@@ -1,23 +1,17 @@
 import React from "react"
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from "react-native"
-import { useNavigation } from "@react-navigation/native";
-import Svg, { Path } from 'react-native-svg';
 
 export default function GamesScreen() {
-  const navigation = useNavigation();
-
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         {/* <Text style={styles.headerTitle}>F1ロゴグランプリ</Text> */}
       </View>
-
       <Image
-        source={require("../../assets/f1logo.png")} 
+        source={require("../../assets/f1logo.png")}
         style={styles.f1Logo}
         resizeMode="contain"
       />
-
       <View style={styles.gameCard}>
         <View style={styles.gameTitleContainer}>
         <Image source={require("../../assets/fingerCircuit.png")} style={styles.gameIcon} />
@@ -69,14 +63,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    height: '100%',
   },
   header: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     padding: 15,
     backgroundColor: "#fff",
-    position: 'relative',
   },
   headerTitle: {
     fontSize: 16,
@@ -86,18 +79,19 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 40,
     marginVertical: 10,
-    resizeMode: 'contain',
   },
   bottomLogo: {
     marginTop: 20,
     marginBottom: 30,
   },
   gameCard: {
+    margin: 15,
     padding: 20,
     backgroundColor: "#fff",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#E10600",
+    
   },
   gameTitleContainer: {
     flexDirection: "row",
@@ -108,7 +102,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 40,
     marginRight: 10,
-    resizeMode: 'contain',
   },
   gameSubtitle: {
     fontSize: 12,
@@ -125,6 +118,11 @@ const styles = StyleSheet.create({
     color: "#333",
     lineHeight: 20,
     marginBottom: 15,
+    
+  },
+  buttonContainer: {
+    position: 'relative',
+    alignItems: 'center',
   },
   playButton: {
     backgroundColor: "#E10600",
