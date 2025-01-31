@@ -1,53 +1,62 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, ImageStyle } from 'react-native';
-import Svg, { Path, Circle, G } from 'react-native-svg';
-import PinchZoomView from 'react-native-pinch-zoom-view';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
+import Svg, { Path, Circle, G } from "react-native-svg";
+import { useNavigate } from "react-router-dom";
+import { useNavigation } from "@react-navigation/native";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 interface Place {
   id: string;
   name: string;
   x: number;
   y: number;
-  position: 'left' | 'right';
+  position: "left" | "right";
 }
 
 // Current location indicator component
 const CurrentLocationIndicator = ({ x, y }: { x: number; y: number }) => (
-  <View style={[styles.currentLocationIndicator, { left: x - 25, top: y - 25 }]}>
+  <View
+    style={[styles.currentLocationIndicator, { left: x - 25, top: y - 25 }]}
+  >
     <Svg width="50" height="50" viewBox="0 0 50 50">
       <G transform="translate(-193 -540)">
-        <Circle 
-          cx="25" 
-          cy="25" 
-          r="25" 
-          transform="translate(193 540)" 
-          fill="#e50111" 
+        <Circle
+          cx="25"
+          cy="25"
+          r="25"
+          transform="translate(193 540)"
+          fill="#e50111"
           opacity="0.08"
         />
-        <Circle 
-          cx="17.5" 
-          cy="17.5" 
-          r="17.5" 
-          transform="translate(201 548)" 
-          fill="#e50111" 
+        <Circle
+          cx="17.5"
+          cy="17.5"
+          r="17.5"
+          transform="translate(201 548)"
+          fill="#e50111"
           opacity="0.08"
         />
-        <Circle 
-          cx="8.5" 
-          cy="8.5" 
-          r="8.5" 
-          transform="translate(210 557)" 
-          fill="#e50111" 
+        <Circle
+          cx="8.5"
+          cy="8.5"
+          r="8.5"
+          transform="translate(210 557)"
+          fill="#e50111"
           opacity="0.08"
         />
-        <Circle 
-          cx="4" 
-          cy="4" 
-          r="4" 
-          transform="translate(214 561)" 
+        <Circle
+          cx="4"
+          cy="4"
+          r="4"
+          transform="translate(214 561)"
           fill="#e50111"
         />
       </G>
@@ -56,17 +65,17 @@ const CurrentLocationIndicator = ({ x, y }: { x: number; y: number }) => (
 );
 
 const PLACES: Place[] = [
-  { id: 'A', name: 'Place A', x: 250, y: 160, position: 'left' },
-  { id: 'B', name: 'Place B', x: 275, y: 165, position: 'right' },
-  { id: 'K', name: 'Place K', x: 185, y: 320, position: 'left' },
-  { id: 'C', name: 'Place C', x: 260, y: 300, position: 'right' },
-  { id: 'D', name: 'Place D', x: 230, y: 335, position: 'right' },
-  { id: 'J', name: 'Place J', x: 230, y: 400, position: 'left' },
-  { id: 'E', name: 'Place E', x: 290, y: 420, position: 'right' },
-  { id: 'I', name: 'Place I', x: 165, y: 460, position: 'left' },
-  { id: 'F', name: 'Place F', x: 240, y: 485, position: 'right' },
-  { id: 'G', name: 'Place G', x: 230, y: 540, position: 'right' },
-  { id: 'H', name: 'Place H', x: 105, y: 568, position: 'left' },
+  { id: "A", name: "Place A", x: 250, y: 160, position: "left" },
+  { id: "B", name: "Place B", x: 275, y: 165, position: "right" },
+  { id: "K", name: "Place K", x: 185, y: 320, position: "left" },
+  { id: "C", name: "Place C", x: 260, y: 300, position: "right" },
+  { id: "D", name: "Place D", x: 230, y: 335, position: "right" },
+  { id: "J", name: "Place J", x: 230, y: 400, position: "left" },
+  { id: "E", name: "Place E", x: 290, y: 420, position: "right" },
+  { id: "I", name: "Place I", x: 165, y: 460, position: "left" },
+  { id: "F", name: "Place F", x: 240, y: 485, position: "right" },
+  { id: "G", name: "Place G", x: 230, y: 540, position: "right" },
+  { id: "H", name: "Place H", x: 105, y: 568, position: "left" },
 ];
 
 const LocationPin = ({ x, y }: { x: number; y: number }) => (
@@ -81,11 +90,26 @@ const LocationPin = ({ x, y }: { x: number; y: number }) => (
   </View>
 );
 
-const PlaceButton = ({ name, x, y, position }: { name: string; x: number; y: number; position: 'left' | 'right' }) => {
-  const leftOffset = position === 'left' ? -95 : 15;
-  
+const PlaceButton = ({
+  name,
+  x,
+  y,
+  position,
+}: {
+  name: string;
+  x: number;
+  y: number;
+  position: "left" | "right";
+}) => {
+  const leftOffset = position === "left" ? -95 : 15;
+
   return (
-    <View style={[styles.placeButtonContainer, { left: x + leftOffset, top: y - 15 }]}>
+    <View
+      style={[
+        styles.placeButtonContainer,
+        { left: x + leftOffset, top: y - 15 },
+      ]}
+    >
       <TouchableOpacity style={styles.placeButton}>
         <Text style={styles.placeButtonText}>{name}</Text>
       </TouchableOpacity>
@@ -94,15 +118,14 @@ const PlaceButton = ({ name, x, y, position }: { name: string; x: number; y: num
 };
 
 const MapScreen = () => {
-  const navigation = useNavigation();
   // Current location coordinates (adjust these to match your exact center point)
   const currentLocation = { x: 225, y: 435 };
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.locationHeader}>
-        <TouchableOpacity 
-          onPress={() => navigation.goBack()} 
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
           <Svg width={24} height={24} viewBox="0 0 24 24">
@@ -115,7 +138,12 @@ const MapScreen = () => {
         <View style={styles.locationContent}>
           <Text style={styles.currentLocationLabel}>現在地</Text>
           <View style={styles.locationNameContainer}>
-            <Svg width={24} height={24} viewBox="0 0 24 24" style={styles.locationIcon}>
+            <Svg
+              width={24}
+              height={24}
+              viewBox="0 0 24 24"
+              style={styles.locationIcon}
+            >
               <Path
                 d="M12 0C7.802 0 4 3.403 4 7.602C4 11.8 7.469 16.812 12 24C16.531 16.812 20 11.8 20 7.602C20 3.403 16.199 0 12 0ZM12 11C10.343 11 9 9.657 9 8C9 6.343 10.343 5 12 5C13.657 5 15 6.343 15 8C15 9.657 13.657 11 12 11Z"
                 fill="#FFF"
@@ -127,35 +155,36 @@ const MapScreen = () => {
       </View>
 
       <View style={styles.mapWrapper}>
-        <PinchZoomView maxScale={4} minScale={0.5} style={styles.zoomWrapper}>
-          <View style={styles.mapContainer}>
-            <Image
-              source={require('../../assets/map.png')}
-              style={styles.mapBackground}
-              resizeMode="contain"
-            />
-            
-            <CurrentLocationIndicator x={currentLocation.x} y={currentLocation.y} />
-            
-            {PLACES.map((place) => (
-              <React.Fragment key={place.id}>
-                <LocationPin x={place.x} y={place.y} />
-                <PlaceButton 
-                  name={place.name} 
-                  x={place.x} 
-                  y={place.y} 
-                  position={place.position}
-                />
-              </React.Fragment>
-            ))}
-          </View>
-        </PinchZoomView>
+        <View style={styles.mapContainer}>
+          <Image
+            source={require("../../assets/map.png")}
+            style={styles.mapBackground}
+            resizeMode="contain"
+          />
+
+          <CurrentLocationIndicator
+            x={currentLocation.x}
+            y={currentLocation.y}
+          />
+
+          {PLACES.map((place) => (
+            <React.Fragment key={place.id}>
+              <LocationPin x={place.x} y={place.y} />
+              <PlaceButton
+                name={place.name}
+                x={place.x}
+                y={place.y}
+                position={place.position}
+              />
+            </React.Fragment>
+          ))}
+        </View>
       </View>
 
       <View style={styles.calendarWrapper}>
         <TouchableOpacity style={styles.calendarButton}>
           <Image
-            source={require('../../assets/calendar-icon.png')}
+            source={require("../../assets/calendar-icon.png")}
             style={styles.calendarIcon}
           />
           <Text style={styles.calendarButtonText}>カレンダーを見る</Text>
@@ -164,7 +193,7 @@ const MapScreen = () => {
 
       <View style={styles.f1LogoContainer}>
         <Image
-          source={require('../../assets/smallf1.png')}
+          source={require("../../assets/smallf1.png")}
           style={styles.f1Logo}
           resizeMode="contain"
         />
@@ -176,88 +205,81 @@ const MapScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    minHeight: '100vh', // Add for web
-    width: '100%',
+    backgroundColor: "#fff",
   },
   locationHeader: {
-    backgroundColor: '#E50111',
+    backgroundColor: "#E50111",
     padding: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    justifyContent: "center",
+    alignItems: "center",
   },
   locationContent: {
-    flexDirection: 'column',
-    alignItems: 'center',
+    flexDirection: "column",
+    alignItems: "center",
   },
   locationIcon: {
     marginRight: 8,
   },
   locationNameContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 4,
   },
   currentLocationLabel: {
-    color: 'white',
+    color: "white",
     fontSize: 14,
     opacity: 0.8,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   locationName: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   mapWrapper: {
     flex: 1,
-    overflow: 'hidden', // This prevents content from escaping the container
-    maxWidth: '100%', // Add for web
-    margin: '0 auto', // Add for web
+    overflow: "hidden", // This prevents content from escaping the container
   },
   zoomWrapper: {
     flex: 1,
-    width: '100%',
+    width: "100%",
   },
   mapContainer: {
-    position: 'relative',
-    width: '100%', // Modified for web
-    height: '100%',
-    maxWidth: 1200, // Add for web
-    marginHorizontal: 'auto', // Add for web
+    position: "relative",
+    width: width,
+    height: "100%",
   },
   mapBackground: {
-    width: '100%',
-    height: '100%',
-  } as ImageStyle,
+    width: "100%",
+    height: "100%",
+  },
   currentLocationIndicator: {
-    position: 'absolute',
+    position: "absolute",
     width: 50,
     height: 50,
     zIndex: 2,
   },
   pinContainer: {
-    position: 'absolute',
+    position: "absolute",
     width: 14,
     height: 21,
     zIndex: 1,
   },
   placeButtonContainer: {
-    position: 'absolute',
+    position: "absolute",
     width: 80,
     height: 30,
     zIndex: 2,
   },
   placeButton: {
-    backgroundColor: '#E50111',
+    backgroundColor: "#E50111",
     borderRadius: 4,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -267,28 +289,27 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   placeButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   calendarWrapper: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 80,
     left: 0,
     right: 0,
-    alignItems: 'center',
-    zIndex: 10, // Add for web
+    alignItems: "center",
   },
   calendarButton: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: '#E50111',
+    borderColor: "#E50111",
     paddingVertical: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '40%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "40%",
   },
   calendarIcon: {
     width: 20,
@@ -296,25 +317,24 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   calendarButtonText: {
-    color: '#E50111',
+    color: "#E50111",
     fontSize: 14,
   },
   f1LogoContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     left: 0,
     right: 0,
-    alignItems: 'center',
-    zIndex: 10, // Add for web
+    alignItems: "center",
   },
   f1Logo: {
     width: 80,
     height: 44,
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     left: 16,
-    top: '50%',
+    top: "50%",
     transform: [{ translateY: -12 }],
     zIndex: 1,
   },

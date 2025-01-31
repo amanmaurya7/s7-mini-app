@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "my-new-project",
-    "slug": "my-new-project",
+    "slug": "mini-s7",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,8 +28,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "6e3aa4fa-dc4d-484b-9fad-b61f46e42a95"
+        "projectId": "dede858a-8d36-4af4-b6dc-075eac331f83"
       }
-    }
+    },
+    "owner": "dev_ritesh_viglante"
   }
 }

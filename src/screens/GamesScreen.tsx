@@ -1,7 +1,14 @@
-import React from "react"
-import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from "react-native"
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path } from "react-native-svg";
 
 export default function GamesScreen() {
   const navigation = useNavigation();
@@ -9,8 +16,8 @@ export default function GamesScreen() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity 
-          onPress={() => navigation.goBack()} 
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
           <Svg width={24} height={24} viewBox="0 0 24 24">
@@ -29,30 +36,39 @@ export default function GamesScreen() {
 
       <View style={styles.gameCard}>
         <View style={styles.gameTitleContainer}>
-          <Image source={require("../../assets/fingerCircuit.png")} style={styles.gameIcon} />
+          <Image
+            source={require("../../assets/fingerCircuit.png")}
+            style={styles.gameIcon}
+          />
           <View>
             <Text style={styles.gameSubtitle}>フィンガーサーキット</Text>
             <Text style={styles.gameTitle}>FINGER CIRCUIT</Text>
           </View>
         </View>
         <Text style={styles.gameDescription}>
-          このゲームでは、画面アイコンをコースに沿って上手くなぞってください。{"\n"}
+          このゲームでは、画面アイコンをコースに沿って上手くなぞってください。
+          {"\n"}
           サーキットを正確になぞれば高得点をGET OK！{"\n"}
           いろいろなコースがあるので、お気に入りのサーキットでチャレンジしよう！
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.playButton}>
-            <Text style={styles.playButtonText}>今すぐ遊ぶ</Text>
-          </TouchableOpacity>
-          <Image 
-            source={require("../../assets/LowerButton.png")}
-            style={styles.imageButton}
-          />
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity style={styles.playButton}>
+              <Text style={styles.playButtonText}>今すぐ遊ぶ</Text>
+            </TouchableOpacity>
+            <Image
+              source={require("../../assets/LowerButton.png")}
+              style={styles.imageButton}
+            />
+          </View>
         </View>
       </View>
       <View style={styles.gameCard}>
         <View style={styles.gameTitleContainer}>
-          <Image source={require("../../assets/trafficLight.png")} style={styles.gameIcon} />
+          <Image
+            source={require("../../assets/trafficLight.png")}
+            style={styles.gameIcon}
+          />
           <View>
             <Text style={styles.gameSubtitle}>レッドライトスタート</Text>
             <Text style={styles.gameTitle}>REDLIGHT START</Text>
@@ -64,13 +80,15 @@ export default function GamesScreen() {
           ベストなタイミングでスタートを切れるか挑戦しよう。
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.playButton}>
-            <Text style={styles.playButtonText}>今すぐ遊ぶ</Text>
-          </TouchableOpacity>
-          <Image 
-            source={require("../../assets/UpperButton.png")}
-            style={styles.imageButton}
-          />
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity style={styles.playButton}>
+              <Text style={styles.playButtonText}>今すぐ遊ぶ</Text>
+            </TouchableOpacity>
+            <Image
+              source={require("../../assets/UpperButton.png")}
+              style={styles.imageButton}
+            />
+          </View>
         </View>
       </View>
       <Image
@@ -79,21 +97,21 @@ export default function GamesScreen() {
         resizeMode="contain"
       />
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    height: '100%',
+    height: "100%",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     padding: 15,
     backgroundColor: "#fff",
-    position: 'relative',
+    position: "relative",
   },
   headerTitle: {
     fontSize: 16,
@@ -103,7 +121,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 30,
     marginVertical: 10,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   bottomLogo: {
     marginTop: 20,
@@ -128,17 +146,15 @@ const styles = StyleSheet.create({
     width: 50,
     height: 40,
     marginRight: 10,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   gameSubtitle: {
     fontSize: 12,
-    marginLeft: "8%",
     color: "#E10600",
     marginBottom: 2,
   },
   gameTitle: {
     fontSize: 18,
-    marginLeft: "8%",
     fontWeight: "bold",
     color: "#E10600",
   },
@@ -149,36 +165,42 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   buttonContainer: {
-    position: 'relative',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
+  },
+  buttonWrapper: {
+    position: "relative",
+    width: "100%",
     maxWidth: 400,
-    marginHorizontal: 'auto',
+    height: 100,
+    // marginTop: 20,
   },
   playButton: {
     backgroundColor: "#E10600",
-    marginTop: "12%",
     padding: 15,
     borderRadius: 25,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    position: "absolute",
+    bottom: 0,
   },
   playButtonText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
-    right: "25%",
+    textAlign: "left",
+    marginLeft: 40,
   },
   imageButton: {
-    position: 'absolute',
-    height: 100,  
-    width: 100,   
-    top: "-16%",
+    position: "absolute",
+    height: 100,
+    width: 100,
     right: "8%",
-    resizeMode: 'contain',
+    top: 10,
+    resizeMode: "contain",
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     left: 16,
     zIndex: 1,
   },
-})
+});
