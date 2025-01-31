@@ -127,7 +127,6 @@ const MapScreen = () => {
       </View>
 
       <View style={styles.mapWrapper}>
-        <PinchZoomView maxScale={4} minScale={0.5} style={styles.zoomWrapper}>
           <View style={styles.mapContainer}>
             <Image
               source={require('../../assets/map.png')}
@@ -149,7 +148,6 @@ const MapScreen = () => {
               </React.Fragment>
             ))}
           </View>
-        </PinchZoomView>
       </View>
 
       <View style={styles.calendarWrapper}>
