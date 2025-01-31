@@ -11,8 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 import Svg, { Path } from "react-native-svg";
 
 export default function GamesScreen() {
-  const navigation = useNavigation();
-
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -63,6 +61,7 @@ export default function GamesScreen() {
           </View>
         </View>
       </View>
+
       <View style={styles.gameCard}>
         <View style={styles.gameTitleContainer}>
           <Image
@@ -91,8 +90,9 @@ export default function GamesScreen() {
           </View>
         </View>
       </View>
+
       <Image
-        source={require("../../assets/f1logo.png")}
+        source={require("../../assets/f1logo.png")} 
         style={[styles.f1Logo, styles.bottomLogo]}
         resizeMode="contain"
       />
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     padding: 15,
     backgroundColor: "#fff",
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   },
   f1Logo: {
     width: "100%",
-    height: 30,
+    height: 40,
     marginVertical: 10,
     resizeMode: "contain",
   },
@@ -128,14 +129,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   gameCard: {
+    margin: 15,
     padding: 20,
     backgroundColor: "#fff",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#E10600",
-    maxWidth: 800,
-    marginHorizontal: 15,
-    marginVertical: 15,
+    
   },
   gameTitleContainer: {
     flexDirection: "row",
@@ -159,10 +159,11 @@ const styles = StyleSheet.create({
     color: "#E10600",
   },
   gameDescription: {
-    fontSize: 11,
+    fontSize: 14,
+    color: "#333",
     lineHeight: 20,
-    color: "#E10600",
     marginBottom: 15,
+    
   },
   buttonContainer: {
     width: "100%",
