@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-new-project",
-    "slug": "my-new-project",
+    "name": "f1-app",
+    "slug": "mini-s7",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dede858a-8d36-4af4-b6dc-075eac331f83"
+      }
+    },
+    "owner": "dev_ritesh_viglante"
   }
 }
