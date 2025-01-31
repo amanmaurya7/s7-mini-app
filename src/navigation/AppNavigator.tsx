@@ -1,8 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
-import MapScreen from '../screens/MapScreen';
-import GamesScreen from '../screens/GamesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +16,7 @@ export default function AppNavigator() {
             fontWeight: 'bold',
           },
           headerTitleAlign: 'center',
+          headerShown:false,
         }}
       >
         <Stack.Screen 
@@ -27,20 +26,7 @@ export default function AppNavigator() {
             title: 'F1日本グランプリ',
           }}
         />
-        <Stack.Screen 
-          name="Map" 
-          component={MapScreen}
-          options={{
-            title: 'F1日本グランプリ',
-          }}
-        />
-        <Stack.Screen 
-          name="Games" 
-          component={GamesScreen}
-          options={{
-            title: 'F1日本グランプリ',
-          }}
-        />
+       
       </Stack.Navigator>
     </NavigationContainer>
   );
