@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, ImageStyle } from 'react-native';
 import Svg, { Path, Circle, G } from 'react-native-svg';
 import PinchZoomView from 'react-native-pinch-zoom-view';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
@@ -93,12 +94,24 @@ const PlaceButton = ({ name, x, y, position }: { name: string; x: number; y: num
 };
 
 const MapScreen = () => {
+  const navigation = useNavigation();
   // Current location coordinates (adjust these to match your exact center point)
   const currentLocation = { x: 225, y: 435 };
 
   return (
     <View style={styles.container}>
       <View style={styles.locationHeader}>
+        <TouchableOpacity 
+          onPress={() => navigation.goBack()} 
+          style={styles.backButton}
+        >
+          <Svg width={24} height={24} viewBox="0 0 24 24">
+            <Path
+              d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              fill="#FFF"
+            />
+          </Svg>
+        </TouchableOpacity>
         <View style={styles.locationContent}>
           <Text style={styles.currentLocationLabel}>現在地</Text>
           <View style={styles.locationNameContainer}>
@@ -164,12 +177,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    minHeight: '100vh', // Add for web
+    width: '100%',
   },
   locationHeader: {
     backgroundColor: '#E50111',
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   },
   locationContent: {
     flexDirection: 'column',
@@ -198,6 +214,8 @@ const styles = StyleSheet.create({
   mapWrapper: {
     flex: 1,
     overflow: 'hidden', // This prevents content from escaping the container
+    maxWidth: '100%', // Add for web
+    margin: '0 auto', // Add for web
   },
   zoomWrapper: {
     flex: 1,
@@ -205,13 +223,15 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     position: 'relative',
-    width: width,
+    width: '100%', // Modified for web
     height: '100%',
+    maxWidth: 1200, // Add for web
+    marginHorizontal: 'auto', // Add for web
   },
   mapBackground: {
     width: '100%',
     height: '100%',
-  },
+  } as ImageStyle,
   currentLocationIndicator: {
     position: 'absolute',
     width: 50,
@@ -257,6 +277,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    zIndex: 10, // Add for web
   },
   calendarButton: {
     backgroundColor: '#fff',
@@ -284,10 +305,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    zIndex: 10, // Add for web
   },
   f1Logo: {
     width: 80,
     height: 44,
+  },
+  backButton: {
+    position: 'absolute',
+    left: 16,
+    top: '50%',
+    transform: [{ translateY: -12 }],
+    zIndex: 1,
   },
 });
 
