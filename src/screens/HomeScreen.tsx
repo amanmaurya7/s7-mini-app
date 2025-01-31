@@ -1,11 +1,22 @@
 import { StyleSheet, View, ImageBackground, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import liff from "@line/liff";
 import Button from "../components/Button";
 import colors from "../constants/colors";
-import Entypo from "@expo/vector-icons/Entypo";
-import Fontisto from "@expo/vector-icons/Fontisto";
+
 export default function HomeScreen() {
-  const navigation = useNavigation();
+  const handleMapPress = () => {
+    liff.openWindow({
+      url: "https://miniapp.line.me/2006841295-jw19DpzR",
+      external: true,
+    });
+  };
+
+  const handleGamePress = () => {
+    liff.openWindow({
+      url: "https://miniapp.line.me/2006841288-NGr37qMr",
+      external: true,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -20,12 +31,12 @@ export default function HomeScreen() {
         <View style={styles.buttonContainer}>
           <Button
             title="ミニマップを開く"
-            onPress={() => navigation.navigate("Map")}
+            onPress={handleMapPress}
             Icon={() => <Image source={require("../../assets/Location.png")} />}
           />
           <Button
             title="ミニゲームを遊ぶ"
-            onPress={() => navigation.navigate("Games")}
+            onPress={handleGamePress}
             Icon={() => <Image source={require("../../assets/DPaD.png")} />}
           />
           <View style={styles.smallF1Logo}>
